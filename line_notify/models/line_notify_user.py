@@ -53,14 +53,19 @@ class LINENotifyUser(models.Model):
             },
         }
 
-    def send(self, message):
+    def send(self, message, image_file=None):
         headers = dict(
             Authorization=f'Bearer {self.access_token}',
         )
         data = dict(
             message=message,
         )
-        response = requests.post('https://notify-api.line.me/api/notify', headers=headers, data=data)
+        files = dict()
+
+        if image_file:
+            files['imageFile'] = image_file
+
+        response = requests.post('https://notify-api.line.me/api/notify', headers=headers, data=data, files=files)
 
         if response.status_code != 200:
             _logger.error(f'LINE Notify: cannot send notify response: {response.text}')
