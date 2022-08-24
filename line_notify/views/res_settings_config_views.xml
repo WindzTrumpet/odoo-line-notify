@@ -51,8 +51,5 @@
             <field name="context">{'module' : 'line_notify'}</field>
         </record>
 
-        <!--<menuitem id="line_notify_settings" name="Settings" parent="your_root_menu"
-                  action="action_ProjectName_configuration" groups="base.group_system"/>-->
-
     </data>
 </odoo>

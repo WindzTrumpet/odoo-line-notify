@@ -1,5 +1,10 @@
 from odoo import fields, models
+from odoo.exceptions import UserError
 import urllib.parse
+import requests
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class LINENotifyUser(models.Model):
@@ -31,3 +36,26 @@ class LINENotifyUser(models.Model):
             'target': 'self',
             'url': url,
         }
+
+    def action_revoke(self):
+        self.ensure_one()
+        self.revoke()
+
+    def revoke(self):
+        self.ensure_one()
+
+        headers = dict(
+            Authorization=f'Bearer {self.access_token}',
+        )
+        response = requests.post('https://notify-api.line.me/api/revoke', headers=headers)
+
+        if response.status_code != 200:
+            _logger.error(f'LINE Notify: cannot revoke access token response: {response.text}')
+
+            raise UserError('Cannot revoke at this time. Please try again later.')
+
+        self.write({
+            'access_token': None,
+            'state': 'not_connected'
+        })
+

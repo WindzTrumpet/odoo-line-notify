@@ -7,14 +7,15 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button name="action_connect" type="object" string="Connect" class="oe_highlight" states="not_connected"/>
+                        <button name="action_connect" type="object" string="Connect" class="oe_highlight oe_read_only" states="not_connected"/>
+                        <button name="action_revoke" type="object" string="Revoke" class="oe_read_only" states="connected" confirm="Are you sure to revoke this access token?"/>
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
                         <group>
                             <group>
                                 <field name="name"/>
-                                <field name="access_token" class="oe_read_only"/>
+                                <field name="access_token" states="connected"/>
                             </group>
                         </group>
                     </sheet>
@@ -35,18 +36,22 @@
             </field>
         </record>
 
-        <!--<record id="line_notify_user_search" model="ir.ui.view">
+        <record id="line_notify_user_search" model="ir.ui.view">
             <field name="name">line.notify.user.search</field>
             <field name="model">line.notify.user</field>
             <field name="arch" type="xml">
                 <search>
+                    <field name="name"/>
+
+                    <filter string="Connected" name="connected" domain="[('state', '=', 'connected')]"/>
+                    <filter string="Not Connected" name="not_connected" domain="[('state', '=', 'not_connected')]"/>
+
                     <group expand="1" string="Group By">
-                        <filter string="Example Field" name="example_field" domain="[]"
-                                context="{'group_by':'example_field'}"/>
+                        <filter string="State" name="state" context="{'group_by':'state'}"/>
                     </group>
                 </search>
             </field>
-        </record>-->
+        </record>
 
         <record id="line_notify_user_action" model="ir.actions.act_window">
             <field name="name">LINE Notify Users</field>
