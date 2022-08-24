@@ -14,14 +14,22 @@
                         <div class="row mt16 o_settings_container" name="line_notify_setting_container">
                             <div class="col-xs-12 col-md-6 o_setting_box">
                                 <div class="o_setting_right_pane">
-                                    <span class="fa fa-lg fa-users mr-2" aria-label="Number of LINE users"/>
+                                    <span class="fa fa-lg fa-users mr-2" aria-label="LINE Notify user"/>
                                     <span class="o_form_label">User</span>
                                     <br/>
                                     <button name="%(line_notify.line_notify_user_action)d" type="action" icon="fa-arrow-right" string="Manage Users" class="btn-link o_web_settings_access_rights"/>
                                 </div>
+                                <br/>
+                                <div class="o_setting_right_pane">
+                                    <span class="fa fa-lg fa-pencil-square-o mr-2" aria-label="LINE Notify log"/>
+                                    <span class="o_form_label">Log</span>
+                                    <br/>
+                                    <button name="%(line_notify.line_notify_log_action)d" type="action" icon="fa-arrow-right" string="See Logs" class="btn-link o_web_settings_access_rights"/>
+                                </div>
                             </div>
                             <div class="col-xs-12 col-md-6 o_setting_box">
                                 <div class="o_setting_right_pane">
+                                    <span class="fa fa-lg fa-lock mr-2" aria-label="LINE Notify authentication"/>
                                     <span class="o_form_label">Authentication</span>
                                     <div class="text-muted mt-1 mb-2">
                                         You can find Client ID and Client Secret

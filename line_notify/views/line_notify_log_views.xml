@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="line_notify_log_form" model="ir.ui.view">
+            <field name="name">line.notify.log.form</field>
+            <field name="model">line.notify.log</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="line_notify_user_id"/>
+                            <h1>
+                                <field name="line_notify_user_id"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="create_date"/>
+                                <field name="message"/>
+                                <field name="error_message" states="fail"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="line_notify_log_tree" model="ir.ui.view">
+            <field name="name">line.notify.log.tree</field>
+            <field name="model">line.notify.log</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="create_date" string="Sent on"/>
+                    <field name="line_notify_user_id"/>
+                    <field name="message"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--<record id="line_notify_log_search" model="ir.ui.view">
+            <field name="name">line.notify.log.search</field>
+            <field name="model">line.notify.log</field>
+            <field name="arch" type="xml">
+                <search>
+                    <group expand="1" string="Group By">
+                        <filter string="Example Field" name="example_field" domain="[]"
+                                context="{'group_by':'example_field'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>-->
+
+        <record id="line_notify_log_action" model="ir.actions.act_window">
+            <field name="name">LINE Notify Log</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">line.notify.log</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no LINE Notify log.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -41,6 +41,46 @@ class LINENotifyUser(models.Model):
         self.ensure_one()
         self.revoke()
 
+    def action_test_send(self):
+        self.send('Test send message')
+
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Test Send Message',
+                'message': 'Test message sent successfully.',
+            },
+        }
+
+    def send(self, message):
+        headers = dict(
+            Authorization=f'Bearer {self.access_token}',
+        )
+        data = dict(
+            message=message,
+        )
+        response = requests.post('https://notify-api.line.me/api/notify', headers=headers, data=data)
+
+        if response.status_code != 200:
+            _logger.error(f'LINE Notify: cannot send notify response: {response.text}')
+
+            self.env['line.notify.log'].sudo().create({
+                'line_notify_user_id': self.id,
+                'message': message,
+                'state': 'fail',
+                'error_message': response.text,
+            })
+            self._cr.commit()
+
+            raise UserError('Cannot send notify.')
+
+        self.env['line.notify.log'].sudo().create({
+            'line_notify_user_id': self.id,
+            'message': message,
+            'state': 'success'
+        })
+
     def revoke(self):
         self.ensure_one()
 
