@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_line_notify_line_notify_user,line_notify.line_notify_user,model_line_notify_user,base.group_user,1,1,1,1
+access_line_notify_line_notify_log,line_notify.line_notify_log,model_line_notify_log,base.group_user,1,0,0,0
