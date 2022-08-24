@@ -8,7 +8,9 @@
                 <form>
                     <header>
                         <button name="action_connect" type="object" string="Connect" class="oe_highlight oe_read_only" states="not_connected"/>
+                        <button name="action_test_send" type="object" string="Test Send Message" class="oe_highlight oe_read_only" states="connected"/>
                         <button name="action_revoke" type="object" string="Revoke" class="oe_read_only" states="connected" confirm="Are you sure to revoke this access token?"/>
+
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
