@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form_line_notify" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.line_notify</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="25"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="line_notify" string="LINE Notify" data-key="line_notify" groups="base.group_erp_manager">
+                        <h2>LINE Notify</h2>
+                        <div class="row mt16 o_settings_container" name="line_notify_setting_container">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <span class="fa fa-lg fa-users mr-2" aria-label="Number of LINE users"/>
+                                    <span class="o_form_label">User</span>
+                                    <br/>
+                                    <button name="%(line_notify.line_notify_user_action)d" type="action" icon="fa-arrow-right" string="Manage Users" class="btn-link o_web_settings_access_rights"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Authentication</span>
+                                    <div class="text-muted mt-1 mb-2">
+                                        You can find Client ID and Client Secret
+                                        <a href="https://notify-bot.line.me/my/services/" target="_blank"> here <i class="fa fa-external-link"></i></a>
+                                    </div>
+                                    <div class="row">
+                                        <label for="line_notify_client_id" string="Client ID" class="o_form_label col-4"/>
+                                        <field name="line_notify_client_id" class="col-8"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="line_notify_client_secret" string="Client Secret" class="o_form_label col-4"/>
+                                        <field name="line_notify_client_secret" class="col-8" password="True"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_line_notify_configuration" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'line_notify'}</field>
+        </record>
+
+        <!--<menuitem id="line_notify_settings" name="Settings" parent="your_root_menu"
+                  action="action_ProjectName_configuration" groups="base.group_system"/>-->
+
+    </data>
+</odoo>
