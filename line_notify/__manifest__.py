@@ -8,9 +8,9 @@
     'version': '1.0',
     'depends': ['base'],
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/ir.model.access.csv',
+        'views/line_notify_user_views.xml',
+        'views/res_settings_config_views.xml',
     ],
     'application': True,
 }
