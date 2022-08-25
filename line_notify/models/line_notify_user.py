@@ -21,11 +21,13 @@ class LINENotifyUser(models.Model):
     def action_connect(self):
         self.ensure_one()
 
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+
         url = 'https://notify-bot.line.me/oauth/authorize?'
         query_string = urllib.parse.urlencode({
             'response_type': 'code',
             'client_id': 'iOcRVUFUpOVjQMH1ba18iI',
-            'redirect_uri': 'http://localhost:8069/line/notify/callback',
+            'redirect_uri': f'{base_url}/line/notify/callback',
             'scope': 'notify',
             'state': self.id,
         })

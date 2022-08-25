@@ -53,8 +53,7 @@ class LineNotify(http.Controller):
         body = response.json()
 
         if 'access_token' not in body:
-            _logger.error(
-                f'LINE Notify: Callback request token from LINE Notify server not sent the access token response: {response.text}')
+            _logger.error(f'LINE Notify: Callback request token from LINE Notify server not sent the access token response: {response.text}')
 
             return request.redirect('/', 303)
 
